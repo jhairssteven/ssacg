@@ -1,0 +1,2 @@
+from .clientCreateView import ClienteCreateView
+from .clientDetailView import ClientDetailView
