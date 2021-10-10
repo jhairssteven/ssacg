@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from authApp.models.client import Client
+from ssacgApp.models.client import Client
 
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
