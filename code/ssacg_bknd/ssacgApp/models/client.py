@@ -3,30 +3,29 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.contrib.auth.hashers import make_password
 
 class UserManager(BaseUserManager):
-    def create_user(self, username, password=None):
+    def create_user(self, email, password=None):
 
-        if not username:
-            raise ValueErro('Users must have an username bro')
-        user = self.model(username=username)
+        if not email:
+            raise ValueErro('Users must have an email bro')
+        user = self.model(email=email)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, password):
-        user = self.create_user(username=username, password=password,)
+    def create_superuser(self, email, password):
+        user = self.create_user(email=email, password=password,)
         user.is_admin = True
         user.save(using=self._db)
         return user
     
 
 class Client (AbstractBaseUser, PermissionsMixin):
-    id_cliente = models.BigAutoField(primary_key=True)
-    nombre = models.CharField('Nombre', max_length=20)
-    address = models.CharField('Address', max_length=50)
-    phoneNumber = models.CharField('Phone_Number', max_length=12)
+    id_client = models.BigAutoField(primary_key=True)
+    name = models.CharField('Clients name', max_length=15, null=True)
+    email = models.EmailField('Cient sign up email', max_length=50, unique=True)
     password = models.CharField('Password', max_length=256)
-    email = models.EmailField('Correo', max_length=100, unique=True)
-    last_connection = models.DateTimeField()
+    address = models.CharField('Shipping address', max_length=30)
+    phone = models.CharField('Client phone number', max_length=20, null=True)
 
     def save(self, **kwargs):
         some_salt = 'mMUj0DrIK6vgtdI3dlkajdfJOIjN'
