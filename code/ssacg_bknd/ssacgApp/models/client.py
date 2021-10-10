@@ -6,7 +6,7 @@ class UserManager(BaseUserManager):
     def create_user(self, username, password=None):
 
         if not username:
-            raise ValueErro('Users must have an username bro')
+            raise ValueError('Users must have an username bro')
         user = self.model(username=username)
         user.set_password(password)
         user.save(using=self._db)
