@@ -22,7 +22,7 @@ class UserManager(BaseUserManager):
 class Client (AbstractBaseUser, PermissionsMixin):
     id_client = models.BigAutoField(primary_key=True)
     name = models.CharField('Clients name', max_length=15, null=True)
-    email = models.EmailField('Cient sign up email', max_length=50, unique=True)
+    email = models.EmailField('Client sign up email', max_length=50, unique=True)
     password = models.CharField('Password', max_length=256)
     address = models.CharField('Shipping address', max_length=30)
     phone = models.CharField('Client phone number', max_length=20, null=True)

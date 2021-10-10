@@ -23,6 +23,7 @@ urlpatterns = [
     # path('login/', TokenObtainPairView.as_view()),
     # path('refresh/', TokenObtainPairView.as_view()),
 
-    # path('user/', views.ClienteCreateView.as_view()),
+    path('user/', views.ClientCreateView.as_view()),
+    path('user/<int:pk>/', views.ClientDetailView.as_view()),
     # path('user/<int:pk>/', views.ClientDetailView.as_view()),
 ]
