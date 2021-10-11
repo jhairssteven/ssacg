@@ -1,2 +1,4 @@
-from .user import User
-from .client import Client
+from .users import Users
+from .clients import Clients
+from .products import Products
+from .admins import Admins

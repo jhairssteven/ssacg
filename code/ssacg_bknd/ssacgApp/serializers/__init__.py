@@ -1,1 +1,2 @@
 from .clientSerializer import ClientSerializer
+from .adminSerializer import AdminSerializer

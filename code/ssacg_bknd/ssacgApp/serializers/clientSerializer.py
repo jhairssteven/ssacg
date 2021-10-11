@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from ssacgApp.models.client import Client
+from ssacgApp.models.clients import Clients
 
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Client
+        model = Clients
         fields = [
             'name',
             'email',
@@ -12,5 +12,14 @@ class ClientSerializer(serializers.ModelSerializer):
             'phone'
         ]
     
+    def to_representation(self, obj):
+        client = obj
+        return {
+            'id_user': client.id_user,
+            'email': client.email,
+            'phone': client.phone,
+            'address': client.address,
+        }
+
     # def create (self, **validated_data):
     #     return Client.objects.create_user(**validated_data)

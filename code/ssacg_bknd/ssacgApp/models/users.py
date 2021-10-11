@@ -23,11 +23,12 @@ class UserManager(BaseUserManager):
         user.is_superuser = True
         user.is_staff = True
         user.is_active = True
+        user.is_admin = True
         user.save()
 
         return user
 
-class User(AbstractBaseUser, PermissionsMixin):
+class Users(AbstractBaseUser, PermissionsMixin):
     id_user = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=15, unique=False, default="My username")
 

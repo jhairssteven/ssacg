@@ -64,7 +64,7 @@ REST_FRAMEWORK = {
 }
 
 #Authentication model
-AUTH_USER_MODEL = 'ssacgApp.User'
+AUTH_USER_MODEL = 'ssacgApp.Users'
 
 # Simple-JWT token structure
 SIMPLE_JWT = {

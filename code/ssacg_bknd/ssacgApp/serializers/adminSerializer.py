@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from ssacgApp.models.admin import Admin
+from ssacgApp.models.admins import Admins
 
 class AdminSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Admin
+        model = Admins
         fields = [
             'name',
             'email', 

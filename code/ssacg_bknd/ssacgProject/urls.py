@@ -19,11 +19,13 @@ from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshVie
 from ssacgApp import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # path('login/', TokenObtainPairView.as_view()),
-    # path('refresh/', TokenObtainPairView.as_view()),
+    path('admin/', admin.site.urls),    
+    path('login/', TokenObtainPairView.as_view()),
+    path('refresh/', TokenObtainPairView.as_view()),
 
-    path('user/', views.ClientCreateView.as_view()),
-    path('user/<int:pk>/', views.ClientDetailView.as_view()),
-    # path('user/<int:pk>/', views.ClientDetailView.as_view()),
+    path('user/client', views.ClientCreateView.as_view()),
+    path('user/admin', views.AdminCreateView.as_view()),
+    
+    # path('user/<email>/', views.ClientLogInView.as_view()),
+    path('user/<int:id_user>/', views.ClientDetailView.as_view()),
 ]

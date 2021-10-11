@@ -1,11 +1,11 @@
 from rest_framework import status, views
 from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from ssacgApp.serializers.clientSerializer import ClientSerializer
+from ssacgApp.serializers.adminSerializer import AdminSerializer
 
-class ClientCreateView(views.APIView):
+class AdminCreateView(views.APIView):
     def post(self, request, *args, **kwargs):
-        serializer = ClientSerializer(data=request.data)
+        serializer = AdminSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
@@ -16,6 +16,4 @@ class ClientCreateView(views.APIView):
         tokenSerializer = TokenObtainPairSerializer(data=tokenData)
         tokenSerializer.is_valid(raise_exception=True)
 
-
         return Response(tokenSerializer.validated_data, status=status.HTTP_201_CREATED)
-        # return Response(request.data, status=status.HTTP_201_CREATED)
