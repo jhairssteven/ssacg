@@ -64,7 +64,7 @@ REST_FRAMEWORK = {
 }
 
 #Authentication model
-AUTH_USER_MODEL = 'ssacgApp.Client'
+AUTH_USER_MODEL = 'ssacgApp.User'
 
 # Simple-JWT token structure
 SIMPLE_JWT = {
@@ -74,8 +74,8 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': False,
     'ALGORITHM': 'HS256',
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
+    'USER_ID_FIELD': 'id_user',
+    'USER_ID_CLAIM': 'id_user',
 }
 
 ROOT_URLCONF = 'ssacgProject.urls'

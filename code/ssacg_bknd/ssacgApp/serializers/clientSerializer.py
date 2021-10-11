@@ -11,3 +11,6 @@ class ClientSerializer(serializers.ModelSerializer):
             'address',
             'phone'
         ]
+    
+    # def create (self, **validated_data):
+    #     return Client.objects.create_user(**validated_data)
