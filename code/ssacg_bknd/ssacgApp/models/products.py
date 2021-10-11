@@ -8,4 +8,4 @@ class Products(models.Model):
     stock= models.IntegerField()
     unitary_price = models.DecimalField(max_digits = 11, decimal_places = 3)
     description = models.TextField(500)
-    admin = models.ForeignKey(Admins, null = True, blank = True, on_delete= models.CASCADE)
+    admin = models.ForeignKey(Admins, related_name = 'Administrator', null = True, blank = True, on_delete= models.CASCADE)
