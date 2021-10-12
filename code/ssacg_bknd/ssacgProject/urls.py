@@ -19,11 +19,14 @@ from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshVie
 from ssacgApp import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),    
+    path('admin/', admin.site.urls),
+    # user login    
     path('login/', TokenObtainPairView.as_view()),
+    
     path('refresh/', TokenObtainPairView.as_view()),
-
+    # client registration
     path('user/client', views.ClientCreateView.as_view()),
+    # admin registration
     path('user/admin', views.AdminCreateView.as_view()),
     
     # check email exists
