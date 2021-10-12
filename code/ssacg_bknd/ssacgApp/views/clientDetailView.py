@@ -14,15 +14,15 @@ class ClientDetailView(generics.RetrieveAPIView):
     # change default field to search on get request below
     lookup_field = "id_user" 
     
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, *arg, **kwargs):
-    #     # token = request.META.get('HTTP_AUTHORIZATION')[7:]
-    #     # tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
-    #     # valid_data = tokenBackend.decode(token, verify=False)
+        token = request.META.get('HTTP_AUTHORIZATION')[7:]
+        tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
+        valid_data = tokenBackend.decode(token, verify=False)
 
-    #     # if valid_data['id_user'] != kwargs['pk']:
-    #     #     stringResponse = {'detail': 'Unauthorized Request bro, please change user haha'}
-    #     #     return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
+        if valid_data['id_user'] != kwargs['id_user']:
+            stringResponse = {'detail': 'Unauthorized Request bro, please change user haha'}
+            return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
         
         return super().get(request, *arg, **kwargs)
