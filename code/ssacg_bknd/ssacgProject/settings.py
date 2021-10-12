@@ -102,17 +102,28 @@ WSGI_APPLICATION = 'ssacgProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# heroku
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'dfjd6n3p9plf28',
+#         'USER': 'yllmvsagbonyea',
+#         'PASSWORD': 'f63e9e964d8a5aac4573cf06077f4bf3b792924e73994b4559c186a2e460ae09',
+#         'HOST': 'ec2-44-197-94-126.compute-1.amazonaws.com',
+#         'PORT': '5432' ,
+#     }
+# }
+# local
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dfjd6n3p9plf28',
-        'USER': 'yllmvsagbonyea',
-        'PASSWORD': 'f63e9e964d8a5aac4573cf06077f4bf3b792924e73994b4559c186a2e460ae09',
-        'HOST': 'ec2-44-197-94-126.compute-1.amazonaws.com',
-        'PORT': '5432' ,
+        'ENGINE'   : 'django.db.backends.postgresql_psycopg2',
+        'NAME'     : 'ssacg',
+        'HOST'     : 'localhost',
+        'PORT'     : '5432',
+        'PASSWORD' : 'postgres',
+        'USER'     : 'postgres'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

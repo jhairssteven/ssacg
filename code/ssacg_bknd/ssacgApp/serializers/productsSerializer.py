@@ -2,7 +2,7 @@ from ssacgApp.models.products import Products
 from rest_framework import serializers
 from ssacgApp.models.admins import Admins
 
-class productsSerializer(serializers.ModelSerializer):
+class ProductsSerializer(serializers.ModelSerializer):
     class Meta:
         model= Products
         fields = ['name', 'category', 'unitary_price', 'stock', 'description']

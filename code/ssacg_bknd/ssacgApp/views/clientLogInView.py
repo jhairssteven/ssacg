@@ -23,4 +23,4 @@ class ClientLogInView(views.APIView):
             stringResponse = {'detail': 'Unauthorized Request bro, please change user haha'}
             return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
         
-        return Response(status=status.HTTP_200_OK)
+        return Response({'Detail': 'Email does indeed exists'}, status=status.HTTP_200_OK)
