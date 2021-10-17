@@ -1,4 +1,4 @@
 from .clientCreateView import ClientCreateView
 from .clientDetailView import ClientDetailView
-from .clientLogInView import ClientLogInView
+from .emailExistsView import EmailExistsView
 from .adminCreateView import AdminCreateView

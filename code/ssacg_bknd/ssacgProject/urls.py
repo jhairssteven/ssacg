@@ -30,7 +30,7 @@ urlpatterns = [
     path('user/admin', views.AdminCreateView.as_view()),
     
     # check email exists
-    path('user/byemail/<email>/', views.ClientLogInView.as_view()),
+    path('user/byemail/<email>/', views.EmailExistsView.as_view()),
     # check user exists
     path('user/id/<int:id_user>/', views.ClientDetailView.as_view()),
 ]
