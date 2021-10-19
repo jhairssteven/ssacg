@@ -9,7 +9,6 @@ from ssacgApp                                     import views
 from ssacgApp.models.products                     import Products
 from ssacgApp.serializers.productsSerializer      import ProductsSerializer
 
-#create a new product: ya
 class ProductsCreateView(generics.CreateAPIView):
     queryset           = Products.objects.all()
     serializer_class   = ProductsSerializer
@@ -29,7 +28,6 @@ class ProductsListView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
     
 
-#check for a single product: ya
 class ProductsDetailView(generics.RetrieveAPIView):
     queryset           = Products.objects.all()
     serializer_class   = ProductsSerializer
@@ -39,7 +37,6 @@ class ProductsDetailView(generics.RetrieveAPIView):
 
         return super().get(request,*args, **kwargs)
 
-#update products: ya
 class ProductsUpdateView(generics.RetrieveUpdateAPIView):
     queryset           = Products.objects.all()
     serializer_class   = ProductsSerializer
@@ -49,7 +46,6 @@ class ProductsUpdateView(generics.RetrieveUpdateAPIView):
         
         return super().update(request, *args, **kwargs)
 
-#delete products
 class ProductsDeleteView(generics.RetrieveDestroyAPIView):
     queryset           = Products.objects.all()
     serializer_class   = ProductsSerializer
