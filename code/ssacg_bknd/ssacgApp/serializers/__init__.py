@@ -1,2 +1,5 @@
 from .clientSerializer import ClientSerializer
-from .orderSerializer import OrderSerializer
+from .adminSerializer import AdminSerializer
+from .productsSerializer import ProductsSerializer
+from .orders_detailSerializer import Orders_detailSerializer
+from .admin_product_logSerializer import Admin_product_logSerializer
