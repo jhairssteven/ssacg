@@ -27,7 +27,12 @@ SECRET_KEY = 'django-insecure-a_s%w(edkhs)9^_i7p&wd0u0e(y-*u%id^k+yluadgya0ix#ul
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CORS_ALLOW_ALL_ORIGINS = True
 
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:8080',
+    'http://127.0.0.1:8000',
+]
 
 # Application definition
 
@@ -40,9 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'ssacgApp',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 # Authentication
 # simple-jwt access to Django authentication system
@@ -64,7 +72,7 @@ REST_FRAMEWORK = {
 }
 
 #Authentication model
-AUTH_USER_MODEL = 'ssacgApp.Client'
+AUTH_USER_MODEL = 'ssacgApp.Users'
 
 # Simple-JWT token structure
 SIMPLE_JWT = {
@@ -74,8 +82,8 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': False,
     'ALGORITHM': 'HS256',
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
+    'USER_ID_FIELD': 'id_user',
+    'USER_ID_CLAIM': 'id_user',
 }
 
 ROOT_URLCONF = 'ssacgProject.urls'
@@ -102,17 +110,28 @@ WSGI_APPLICATION = 'ssacgProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# heroku
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'dfjd6n3p9plf28',
+#         'USER': 'yllmvsagbonyea',
+#         'PASSWORD': 'f63e9e964d8a5aac4573cf06077f4bf3b792924e73994b4559c186a2e460ae09',
+#         'HOST': 'ec2-44-197-94-126.compute-1.amazonaws.com',
+#         'PORT': '5432' ,
+#     }
+# }
+# local
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dfjd6n3p9plf28',
-        'USER': 'yllmvsagbonyea',
-        'PASSWORD': 'f63e9e964d8a5aac4573cf06077f4bf3b792924e73994b4559c186a2e460ae09',
-        'HOST': 'ec2-44-197-94-126.compute-1.amazonaws.com',
-        'PORT': '5432' ,
+        'ENGINE'   : 'django.db.backends.postgresql_psycopg2',
+        'NAME'     : 'ssacg1',
+        'HOST'     : 'localhost',
+        'PORT'     : '5432',
+        'PASSWORD' : 'postgres',
+        'USER'     : 'postgres'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
