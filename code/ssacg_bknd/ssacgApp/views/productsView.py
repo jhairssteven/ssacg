@@ -47,17 +47,13 @@ class ProductsUpdateView(generics.RetrieveUpdateAPIView):
         return super().update(request, *args, **kwargs)
 
 class ProductsDeleteView(generics.RetrieveDestroyAPIView):
-    queryset           = Products.objects.all()
-    serializer_class   = ProductsSerializer
+    queryset = Products.objects.all()
+    serializer_class = ProductsSerializer
     permission_classes = (IsAuthenticated,)
 
-    #como se puede eliminar solo si el usuario tiene los permisos ?
-    """def delete(self, request, *args, **kwargs):
-        token        = request.META.get('HTTP_AUTHORIZATION')[7:]
+    def delete(self,request,*args,**kwargs):
+        token   = request.META.get('HTTP_AUTHORIZATION')[7:] # Generador de tokens
         tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
-        valid_data   = tokenBackend.decode(token,verify=False)
-        
-        if valid_data['id_user'] != kwargs['id_user']:
-            stringResponse = {'detail':'Unauthorized Request'}
-            return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
-        return super().destroy(request, *args, **kwargs)"""
+        valid_data = tokenBackend.decode(token,verify=False)
+
+        return super().destroy(request,*args,**kwargs)
