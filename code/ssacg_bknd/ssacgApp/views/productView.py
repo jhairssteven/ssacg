@@ -31,16 +31,15 @@ class ProductDetailView(generics.RetrieveAPIView):
 
         return super().get(request,*args, **kwargs)
 
-#class ProductDeleteView(generics.DestroyAPIView):
-#    queryset = Products.objects.all()
-#    serializer_class = ProductsSerializer
-#    permission_classes = (IsAuthenticated,)
+class ProductDeleteView(generics.DestroyAPIView):
+    queryset = Products.objects.all()
+    serializer_class = ProductsSerializer
+    permission_classes = (IsAuthenticated,)
 
-#    def delete(self,request,*args,**kwargs):
-#        token   = request.META.get('HTTP_AUTHORIZATION')[7:]#Generador de tockens
-#        tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
-#        valid_data = tokenBackend.decode(token,verify=False)
+    def delete(self,request,*args,**kwargs):
+        token   = request.META.get('HTTP_AUTHORIZATION')[7:]#Generador de tockens
+        tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
+        valid_data = tokenBackend.decode(token,verify=False)
 
 
-#        return super().destroy(request,*args,**kwargs)
-
+        return super().destroy(request,*args,**kwargs)

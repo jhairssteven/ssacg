@@ -5,11 +5,11 @@ from ssacgApp.models.admins import Admins
 class ProductsSerializer(serializers.ModelSerializer):
     class Meta:
         model= Products
-        fields = ['name', 'category', 'unitary_price', 'stock', 'description']
+        fields = ['pk','name', 'category', 'unitary_price', 'stock', 'description']
     
     def to_representation(self, obj):
         admin = Admins.objects.get(id=obj.admin)
-        product = Products.objects.get(id=obj.id)
+        product = Products.objects.get(id_product=obj.id_product)
         
         return {
             'id_product'    : product.id_product,

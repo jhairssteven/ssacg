@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 from ssacgApp import views
-from ssacgApp.views.productView import ProductCreateView
+from ssacgApp.views.productView import ProductCreateView, ProductDeleteView
 #from ssacgApp.views.productView import ProductDeleteView
 
 urlpatterns = [
@@ -24,8 +24,9 @@ urlpatterns = [
     #Add product
     path('user/product' , views.ProductCreateView.as_view()),
     #Delete product
+    path('user/product/remove/<int:pk>/', views.ProductDeleteView.as_view()),
     #path('user/product/remove/<str:name>/', views.ProductDeleteView.as_view()),
-    path('user/product/view/<int:product>/<int:pk>/', views.ProductDetailView.as_view()),
+    #path('user/product/view/<int:id_product>', views.ProductDetailView.as_view()),
 
 
 ]
