@@ -93,6 +93,8 @@ export default {
 
   created: function() {
     document.title = strings.pagetitle.logIn;
+    if(localStorage.getItem("isAuth") || false)
+      this.$emit("alreadyLogged");
   },
 };
 </script>

@@ -16,6 +16,7 @@
         v-on:completedLogIn="completedLogIn"
         v-on:completedSignUp="completedSignUp"
         v-on:back2login="back2login"
+        v-on:alreadyLogged="alreadyLogged"
       >
       </router-view>
     </div>
@@ -37,6 +38,8 @@ export default {
   components: {},
   methods: {
     verifyAuth: function() {
+      // if (this.is_auth == false) this.$router.push({ name: "logIn" });
+      this.is_auth = localStorage.getItem("isAuth") || false;
       if (this.is_auth == false) this.$router.push({ name: "logIn" });
     },
 
@@ -48,10 +51,15 @@ export default {
       this.$router.push({ name: "signUp" });
     },
 
+    alreadyLogged: function() {
+      this.$router.push({name: "products"});
+    },
+
     completedLogIn: function(data) {
-      // alert("completed log in!");
+      localStorage.setItem("token_refresh", data.token_refresh);
+      localStorage.setItem("token_access", data.token_access);
+      localStorage.setItem("isAuth", true);
       this.is_auth = true;
-      // document.title = strings.pagetitle.main;
       this.$router.push({name: "products"});
     },
     completedSignUp: function(data) {

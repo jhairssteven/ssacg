@@ -17,9 +17,9 @@ class ProductsCreateView(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         serializer = ProductsSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
-
-        return Response("Agregado", status=status.HTTP_201_CREATED)
+        newProduct = serializer.save()
+        
+        return Response(serializer.to_representation(newProduct), status=status.HTTP_201_CREATED)
 
 #list all the products: ya, pero desordenada
 class ProductsListView(generics.ListAPIView):

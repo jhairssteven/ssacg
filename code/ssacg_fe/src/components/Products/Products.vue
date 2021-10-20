@@ -1,4 +1,5 @@
 <template>
+
   <div class="upper-table">
     <table>
       <tr>
@@ -16,6 +17,7 @@
             <table class="products-table" id="productsList-table">
                 <thead>
                 <tr>
+                    <th>id</th>
                     <th>Categoría</th>
                     <th>Nombre</th>
                     <th>Precio</th>
@@ -26,6 +28,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(product, k) in product_list" :key="k">
+                        <td>{{product.id}}</td>
                         <td>{{ product.category }}</td>
                         <td>{{ product.nombre }}</td>
                         <td>{{ product.precio }}</td>
@@ -33,7 +36,7 @@
                         <td>{{ product.description }}</td>
                         <td>
                             <a v-on:click="onEdit($event)">Editar</a>
-                            <a v-on:click="onDelete($event, k, product)">Borrar</a>
+                            <a v-on:click="onDelete(k, product)">Borrar</a>
                         </td>
                     </tr>
                 </tbody>
@@ -84,7 +87,7 @@
   </div>
   <div class="buttons-panel">
     <div class="CRUD-button-panel">
-      <button v-on:click="onFormSubmit()" type="submit">Crear</button>
+      <button v-on:click="onFormSubmit()" type="submit">Guardar</button>
       <button >Buscar</button>
     </div>
     <div class="account-button-panel">
