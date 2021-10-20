@@ -49,9 +49,10 @@ export default {
     },
 
     completedLogIn: function(data) {
-      alert("completed log in!");
+      // alert("completed log in!");
       this.is_auth = true;
-      document.title = strings.pagetitle.main;
+      // document.title = strings.pagetitle.main;
+      this.$router.push({name: "products"});
     },
     completedSignUp: function(data) {
       alert("succesfully signup");
