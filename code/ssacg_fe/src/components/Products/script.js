@@ -4,16 +4,23 @@ import axios from "axios";
 export default {
     name: "products",
 
+    props: ['tokenStr'],
+
     data: function () {
         return {
             selectedRow: null,
             product_list: [
             ],
-            tokenStr: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MTkzMTk4LCJqdGkiOiI4ZWVjYzliNmQ5NjY0OGM0YTdlODAzZTY2YjMxNjdiYSIsImlkX3VzZXIiOjF9.iOREbRuAufBOZtjkUkjeFHAP5Sk1gr_zD0JG21qGJks",
+            // tokenStr: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MTkzMTk4LCJqdGkiOiI4ZWVjYzliNmQ5NjY0OGM0YTdlODAzZTY2YjMxNjdiYSIsImlkX3VzZXIiOjF9.iOREbRuAufBOZtjkUkjeFHAP5Sk1gr_zD0JG21qGJks",
         };
     },
 
     methods: {
+        logOut: function() {
+            localStorage.clear();
+            this.$emit("verifyAuth");
+            return;
+        },
 
         onFormSubmit: function () {
             if (this.validate()) {
@@ -182,8 +189,13 @@ export default {
                         }
                     })
                     .catch((error) => {
-                        console.log(error, 'error in getallproducts()');
-                        alert(JSON.stringify(error.response.data));
+                        if(error.response.status == "401") {
+                            this.logOut();
+                        }
+                        else {
+                            console.log(error, 'error in getallproducts()');
+                            alert(JSON.stringify(error.response.data));
+                        }
                     })
         }
 

@@ -91,7 +91,7 @@
       <button >Buscar</button>
     </div>
     <div class="account-button-panel">
-      <button>Cerrar sesión</button>
+      <button v-on:click="logOut()" >Cerrar sesión</button>
     </div>
   </div>
 </template>

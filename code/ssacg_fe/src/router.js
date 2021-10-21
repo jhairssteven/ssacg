@@ -23,7 +23,8 @@ const routes = [
   {
     path: '/u/products/',
     name: 'products',
-    component: Products
+    component: Products,
+    props: true
   },
 ];
 

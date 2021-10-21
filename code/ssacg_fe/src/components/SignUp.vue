@@ -75,7 +75,8 @@
                 }
             }, 
             back2login: function () {
-                this.$router.push({name: 'logIn'})
+                // this.$router.push({name: 'logIn'})
+                this.$emit("back2login");
             }
         },
         created: function() {
