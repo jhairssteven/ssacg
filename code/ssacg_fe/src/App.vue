@@ -18,6 +18,7 @@
         v-on:alreadyLogged="alreadyLogged"
         v-on:verifyAuth="verifyAuth"
         v-on:back2login="back2login"
+        v-on:logOut="logOut"
       >
       </router-view>
     </div>
@@ -38,11 +39,18 @@ export default {
 
   components: {},
   methods: {
+    logOut: function() {
+      localStorage.clear();
+      this.verifyAuth();
+    },
     verifyAuth: function() {
       this.is_auth = localStorage.getItem("isAuth") || false;
 
       if (this.is_auth == false) 
         this.$router.push({ name: "logIn" });
+      else
+        this.$router.push({name: "products", 
+        params: {tokenStr: localStorage.getItem("token_access")}});
     },
 
     loadLogIn: function() {
@@ -54,7 +62,8 @@ export default {
     },
 
     alreadyLogged: function() {
-      this.$router.push({name: "products"});
+      this.$router.push({name: "products", 
+                params: {tokenStr: localStorage.getItem("token_access")}});
     },
 
     completedLogIn: function(data) {
@@ -63,11 +72,12 @@ export default {
       localStorage.setItem("isAuth", true);
       this.is_auth = true;
       this.$router.push({ name: "products", 
-                          params: {tokenStr: data.token_access}}
+                          params: {email: data.email, tokenStr: data.token_access}}
       );
     },
     completedSignUp: function(data) {
       alert("succesfully signup");
+      this.back2login();
     },
     back2login: function() {
       this.$router.push({name: 'logIn'})

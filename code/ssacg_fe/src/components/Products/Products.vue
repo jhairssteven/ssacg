@@ -9,6 +9,8 @@
             src="../../assets/logo-anillo-ssacg-multicolor.png"
             alt="Logo"
           />
+          <br>
+          <p>{{email}}</p>
         </td>
         <td style="padding: 0vw 0vw 0vw 9.25vw;">
             <h2 style="text-align: center;">
@@ -88,7 +90,7 @@
   <div class="buttons-panel">
     <div class="CRUD-button-panel">
       <button v-on:click="onFormSubmit()" type="submit">Guardar</button>
-      <button >Buscar</button>
+      <button style="pointer-events: none; background-color: grey">Buscar</button>
     </div>
     <div class="account-button-panel">
       <button v-on:click="logOut()" >Cerrar sesión</button>

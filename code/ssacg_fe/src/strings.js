@@ -9,6 +9,7 @@ const domain = "http://127.0.0.1:8000/";
 
 export const URLs = {
     logIn:  domain + "login/",
+    refreshToken: domain + "refresh/",
     signUpAdmin: domain + "user/admin",
     existsEmail: domain + "user/byemail/",
   

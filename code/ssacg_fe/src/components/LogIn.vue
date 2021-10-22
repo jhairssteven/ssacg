@@ -61,12 +61,16 @@ export default {
   },
 
   methods: {
+    // completedSignUp: function(data) {
+    //   this.$emit("completedSignUp", data);
+    // },
     processLogInUser: function() {
       axios.get(strings.URLs.existsEmail + this.user.email + "/")
       .then((response) => {
             axios.post(strings.URLs.logIn, this.user, { headers: {} })
             .then((result) => {
               let dataLogIn = {
+                email: this.user.email,
                 token_access: result.data.access,
                 token_refresh: result.data.refresh,
               };

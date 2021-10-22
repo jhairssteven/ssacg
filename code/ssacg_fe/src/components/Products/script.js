@@ -4,7 +4,16 @@ import axios from "axios";
 export default {
     name: "products",
 
-    props: ['tokenStr'],
+    props: {
+        email: {
+            default: "user", 
+            type: String
+        },
+        tokenStr : {
+            default: "null",
+            type: String
+        }
+    },
 
     data: function () {
         return {
@@ -17,12 +26,11 @@ export default {
 
     methods: {
         logOut: function() {
-            localStorage.clear();
-            this.$emit("verifyAuth");
-            return;
+            this.$emit("logOut");
         },
 
-        onFormSubmit: function () {
+        onFormSubmit: async function () {
+            // await this.checkIfLogged();
             if (this.validate()) {
                 let formData = this.readFormData();
                 if (this.selectedRow == null) {
@@ -34,7 +42,8 @@ export default {
             }
         },
 
-        updateRecord: function (data, selRow) {
+        updateRecord: async function (data, selRow) {
+            // await this.checkIfLogged();
             let id_product = selRow.cells[0].innerHTML;
 
             let prodData2update = {
@@ -59,8 +68,7 @@ export default {
                 selRow.cells[5].innerHTML = result.data.description;
             })
             .catch((error) => {
-                    console.log(error, 'error');
-                    alert(JSON.stringify(error.response.data));
+                this.parseErrorForTokens(error, "error in updateProduct()");
             });
 
         },
@@ -75,6 +83,7 @@ export default {
         },
 
         onDelete: function (k, product) {
+            // this.checkIfLogged();
             let id_product = product.id;
             if (confirm('Por favor, confirme si desea eliminar este elemento')) {
                 let prod_indx = this.product_list.indexOf(product);
@@ -83,11 +92,12 @@ export default {
                     axios.delete(
                         strings.URLs.deleteProduct + id_product + "/",
                         { headers: { "Authorization": `Bearer ${this.tokenStr}` } }
-                    ).then((result) => {
+                    )
+                    .then((result) => {
                         this.product_list.splice(prod_indx, 1);
-                    }).catch((error) => {
-                        console.log(error, 'error');
-                        alert(JSON.stringify(error.response.data));
+                    })
+                    .catch((error) => {
+                        this.parseErrorForTokens(error, "error in onDelete()");
                     });
                 }
                 this.resetForm();
@@ -104,6 +114,7 @@ export default {
         },
 
         insertNewRecord: function (data) {
+            // this.checkIfLogged();
             let newProd = {
                 category: data.category,
                 name: data.name,
@@ -125,7 +136,7 @@ export default {
                     });
                 })
                 .catch((error) => {
-                    alert(JSON.stringify(error.response.data));
+                    this.parseErrorForTokens(error, "error on insertNewRecord()");
                 })
 
         },
@@ -170,7 +181,8 @@ export default {
             e.target.style.height = (e.target.scrollHeight) + "px";
         },
 
-        getAllProducts: function() {
+        getAllProducts: async function() {
+            // await this.checkIfLogged();
             axios.get(strings.URLs.getAllProducts, 
                 {headers: {
                     "Authorization": `Bearer ${this.tokenStr}`}})
@@ -189,20 +201,54 @@ export default {
                         }
                     })
                     .catch((error) => {
-                        if(error.response.status == "401") {
-                            this.logOut();
-                        }
-                        else {
-                            console.log(error, 'error in getallproducts()');
-                            alert(JSON.stringify(error.response.data));
-                        }
-                    })
-        }
+                        this.parseErrorForTokens(error, "error in getallproducts()")
+                    });
+            
+        },
+
+        parseErrorForTokens: function(error, errorCodeLocationStr) {
+            let alertMsg = "";
+            if (error.response.status == "401" || error.response.status == "400")
+                alertMsg = "Tus credenciales han expirado,\n ingresa nuevamente";              
+            else //other code status e.g: 500
+                alertMsg = "Error interno, ingresa nuevamente";
+
+            alert(alertMsg);
+            console.log(error, errorCodeLocationStr)
+
+            this.$emit("logOut"); 
+        },
+
+        // checkIfLogged: async function() {
+        //     if(localStorage.getItem("token_refresh") === null 
+        //         || localStorage.getItem("token_access") === null) {
+        //             this.$emit("logOut");
+        //             return;
+        //         }
+        //     return axios.post(strings.URLs.refreshToken,
+        //             {refresh: localStorage.getItem("token_refresh")},
+        //             {header:{}})
+        //             .then((result) => {
+        //                 localStorage.setItem("token_access", result.data.access);
+        //             })
+        //             .catch((error) => {
+        //                 if (error.response.status == "401") {
+        //                     this.$emit("logOut"); // refresh token expired
+        //                     console.log("checkIfLogged 401")
+        //                 }
+        //                 else { //other code status e.g: 500
+        //                     console.log(error, "checkIfLogged function error")
+        //                     this.$emit("logOut");
+        //                 }
+        //             })
+        // },
+
 
     },
 
-    created: function () {
+    created: async function () {
         document.title = strings.pagetitle.products;
+        // await this.checkIfLogged();
         this.getAllProducts();
     },
 };

@@ -8,7 +8,7 @@ from ssacgApp.views.productsView      import ProductsCreateView, ProductsListVie
 urlpatterns = [
     path('admin/',                  admin.site.urls),    
     path('login/',                  TokenObtainPairView.as_view()),    # user login
-    path('refresh/',                TokenObtainPairView.as_view()),    # user refresh token
+    path('refresh/',                TokenRefreshView.as_view()),    # user refresh token
     path('user/client',             views.ClientCreateView.as_view()), # client registration
     path('user/admin',              views.AdminCreateView.as_view()),  # admin registration
     path('user/byemail/<email>/',   views.EmailExistsView.as_view()),  # check email exists
