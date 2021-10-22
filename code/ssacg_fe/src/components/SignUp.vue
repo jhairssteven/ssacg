@@ -6,7 +6,7 @@
                 <td style="padding: 0vw 0vw 0vw 18.5vw;">
                     <table>
                         <tr><td>
-                            <form>
+                            <form v-on:submit.prevent="processSignUpUser">
                                 <input class="field-input" v-model="user.name" type="text" placeholder="Nombre de usuario"><br>
                                 <!-- <div class="field-input-required"> -->
                                     <input class="field-input" v-model="user.email" type="text" placeholder="Correo"><br>
@@ -14,7 +14,7 @@
                                     <input class="field-input" v-model="checkPass" type="password" placeholder="Confirmar contraseña"><br>
                                 <!-- </div> -->
                                 <p class="alert-msg">{{alert_msg}}</p>
-                                <button class="signup-btn-signup-page" v-on:click="processSignUpUser">Crear cuenta</button><br>
+                                <button class="signup-btn-signup-page">Crear cuenta</button><br>
                                 <a href="" v-on:click="back2login">Ya tengo una cuenta</a>
                             </form>
                         </td></tr>                        
@@ -75,7 +75,8 @@
                 }
             }, 
             back2login: function () {
-                this.$router.push({name: 'logIn'})
+                // this.$router.push({name: 'logIn'})
+                this.$emit("back2login");
             }
         },
         created: function() {
