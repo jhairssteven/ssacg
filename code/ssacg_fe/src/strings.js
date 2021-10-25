@@ -5,15 +5,15 @@ export const pagetitle = {
     products:   "ssacg | productos",
 };
 
-let domain = "http://127.0.0.1:8000/";
+const dev_domain = "http://127.0.0.1:8000/";
 const prod_domain = "https://ssacg-bkend.herokuapp.com/";
-domain = prod_domain;
+let domain = dev_domain;
 
 export const URLs = {
-    logIn:  domain + "login/",
+    logIn:        domain + "login/",
     refreshToken: domain + "refresh/",
-    signUpAdmin: domain + "user/admin",
-    existsEmail: domain + "user/byemail/",
+    signUpAdmin:  domain + "user/admin",
+    existsEmail:  domain + "user/byemail/",
   
     insertProduct:   domain + "user/product/",
     getAllProducts:  domain + "user/product/show/",

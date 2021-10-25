@@ -20,7 +20,6 @@ export default {
             selectedRow: null,
             product_list: [
             ],
-            // tokenStr: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM1MTkzMTk4LCJqdGkiOiI4ZWVjYzliNmQ5NjY0OGM0YTdlODAzZTY2YjMxNjdiYSIsImlkX3VzZXIiOjF9.iOREbRuAufBOZtjkUkjeFHAP5Sk1gr_zD0JG21qGJks",
         };
     },
 
@@ -136,7 +135,15 @@ export default {
                     });
                 })
                 .catch((error) => {
-                    this.parseErrorForTokens(error, "error on insertNewRecord()");
+                    if (error.response.status == "400" && 
+                    (error.response.data.hasOwnProperty("unitary_price")
+                    || error.response.data.hasOwnProperty("stock"))) {
+                        // "Ensure this value is greater than or equal to 0.001."
+                        // "Ensure this value is greater than or equal to 1."
+                        alert("Revisa tus datos, \ningresaste un valor inválido")
+                    } else {
+                        this.parseErrorForTokens(error, "error on insertNewRecord()");
+                    }
                 })
 
         },

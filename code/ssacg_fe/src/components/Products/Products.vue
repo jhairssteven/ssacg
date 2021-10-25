@@ -64,14 +64,16 @@
             <tr>
               <td>
                 <input
-                  type="number"
-                  step="0.1"
-                  id="priceField"
-                  placeholder="Precio" autocomplete="off"
+                  type="number" 
+                  min ="0.000" 
+                  step="0.1" 
+                  oninput="(value >= 0)||(value='');"
+                  id="priceField" 
+                  placeholder="Precio" autocomplete="off" 
                 />
               </td>
               <td>
-                <input type="number" id="stockField" placeholder="Stock" autocomplete="off"/>
+                <input type="number" min="1" oninput="validity.valid||(value='');" id="stockField" placeholder="Stock" autocomplete="off"/>
               </td>
             </tr>
           </table>
