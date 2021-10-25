@@ -69,7 +69,7 @@
                   step="0.1" 
                   oninput="(value >= 0)||(value='');"
                   id="priceField" 
-                  placeholder="Precio" autocomplete="off" 
+                  placeholder="Precio - COP" autocomplete="off" 
                 />
               </td>
               <td>
