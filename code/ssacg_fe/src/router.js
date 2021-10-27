@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import App from './App.vue'
+// import App from './App.vue'
+// import App from './AppOld.vue'
+import App from './MainPage.vue'
 import LogIn from './components/LogIn.vue';
 import SignUp from './components/SignUp.vue';
 import Products from './components/Products/Products.vue';
