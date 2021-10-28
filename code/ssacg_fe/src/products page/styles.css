@@ -1,0 +1,125 @@
+.buttons-panel {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button {
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+
+  width: 120px;
+  padding: 10px 1px 10px 1px;
+  margin: 25px auto 25px auto;
+  background-color: #4384f4; /* 4384F4*/
+  color: white;
+}
+
+button:hover {
+  background-color: #3b77df;
+}
+
+button:active {
+  background-color: #356ac7;
+}
+
+.upper-table {
+  display: flex;
+  justify-content: center;
+}
+
+.upper-table td {
+  margin-left: 15vw;
+}
+
+.bottom-table {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.logo {
+  border-radius: 15px;
+  width: 300px;
+}
+
+.required-field {
+  box-shadow: 0px 0px 4px red;
+}
+
+.required-field:focus {
+  border: 0.25px red;
+  box-shadow: 0px 0px 6px red;
+}
+
+.products-table {
+  table-layout: auto;
+  width: 53vw;
+}
+
+.products-table th {
+  background-color: #fac5be; /*#b1b1b1*/
+  border-radius: 2px;
+}
+.products-table td {
+  /* background-color: rgb(165, 194, 245); #dddddf */
+  border-radius: 2px;
+  text-align: center;
+}
+
+.products-table tbody tr:nth-child(odd) {
+  background-color: white;
+}
+
+.products-table tbody tr:nth-child(even) {
+  background-color: rgb(165, 194, 245);
+}
+
+.products-table td:nth-of-type(0) {
+  width: 12vw;
+} /*category*/
+.products-table td:nth-of-type(1) {
+  width: 12vw;
+} /*Name*/
+.products-table td:nth-of-type(4) {
+  width: 12vw;
+} /*Description*/
+.products-table td:nth-of-type(5) {
+  width: 12vw;
+}
+
+input,
+textarea {
+  width: 225px;
+  margin: 1vh 4.125vw 4.125vh 4.125vw;
+  padding: 10px 15px 10px 15px;
+  border-radius: 5px;
+  border: 0.25px solid rgb(163, 163, 163);
+}
+
+input:focus,
+textarea:focus {
+  box-shadow: 0px 0px 8px rgb(199, 196, 196);
+  outline: none;
+}
+
+.editProductInput input {
+  box-shadow: 0px 0px 8px rgb(165, 194, 245);
+  outline: none;
+
+  width: 225px;
+  margin: 1px 1px 15px 1px;
+  padding: 10px 15px 10px 15px;
+  border-radius: 5px;
+  border: 0.25px solid rgb(163, 163, 163);
+}
+
+a {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #2b46c0;
+  margin-right: 4px;
+}
