@@ -85,24 +85,6 @@
         </tbody>
       </table>
     </div>
-
-    <footer>
-      <div class="info-links">
-        <a href="#">nosotros</a>
-        <a href="#">contacto</a>
-      </div>
-      <div class="brand">
-        <strong>ssacg | galería</strong>
-      </div>
-      <div class="footer-social-networks">
-        <a href="https://www.facebook.com/"> <i class="bi bi-facebook"></i></a>
-        <a href="https://www.instagram.com/">
-          <i class="bi bi-instagram"></i
-        ></a>
-        <a href="https://www.twitter.com/"> <i class="bi bi-twitter"></i></a>
-        <a href="https://www.whatsapp.com/"> <i class="bi bi-whatsapp"></i></a>
-      </div>
-    </footer>
     <div class="main-component">
       <router-view
         v-on:changePage="changePage"
@@ -192,7 +174,8 @@ export default {
                       this.product_list.push(
                           {
                             id:             result.data[i].id_product,
-                            img_src:        "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+                            img_src:        result.data[i].img_src,
+                            // img_src:        "https://www.freeiconspng.com/uploads/no-image-icon-6.png",
                             img_alt_txt:    result.data[i].name,
                             category:       result.data[i].category,
                             title:          result.data[i].name,

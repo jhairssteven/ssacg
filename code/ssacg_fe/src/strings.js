@@ -7,8 +7,9 @@ export const pagetitle = {
 
 const dev_domain = "http://127.0.0.1:8000/";
 const prod_domain = "https://ssacg-bkend.herokuapp.com/";
-let domain = dev_domain;
-const front_domain = "http://localhost:8080/#/";
+let domain = prod_domain;
+// const front_domain = "http://localhost:8080/#/";
+const front_domain = "https://ssacg.herokuapp.com/";
 
 export const URLs = {
     frontIndex:   front_domain,

@@ -79,7 +79,8 @@ export default {
         .then((result) => {
             this.product = {
                 id:             result.data.id_product,
-                img_src:        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/300px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg",
+                // img_src:        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/300px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg",
+                img_src:        result.data.img_src,
                 category:       result.data.category,
                 name:           result.data.name,
                 price:          result.data.unitary_price,

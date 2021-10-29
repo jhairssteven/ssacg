@@ -1,16 +1,16 @@
 <template>
-
+<div class="page-container-products">
   <div class="upper-table">
     <table>
       <tr>
         <td>
-          <img
+          <!-- <img
             class="logo"
             src="../../assets/logo-anillo-ssacg-multicolor.png"
             alt="Logo"
-          />
-          <br>
-          <p>{{email}}</p>
+          /> -->
+          <!-- <br>
+          <p>{{email}}</p> -->
         </td>
         <td style="padding: 0vw 0vw 0vw 9.25vw;">
             <h2 style="text-align: center;">
@@ -19,17 +19,20 @@
             <table class="products-table" id="productsList-table">
                 <thead>
                 <tr>
+                    <th>Imagen</th>
                     <th>id</th>
                     <th>Categoría</th>
                     <th>Nombre</th>
                     <th>Precio</th>
                     <th>Stock</th>
                     <th>Descripción</th>
+                    
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(product, k) in product_list" :key="k">
+                        <td><img :src="product.img_src" :alt="product.nombre"></td>
                         <td>{{product.id}}</td>
                         <td>{{ product.category }}</td>
                         <td>{{ product.nombre }}</td>
@@ -49,8 +52,15 @@
   </div>
   <div>
     <br />
-    <table class="bottom-table">
+    <table class="bottom-table"  style="border: 1px solid black;">
       <tr>
+        <td>
+          <textarea
+            placeholder="URL de la imagen"
+            name="img_src_TextArea"
+            id="img_src_TextArea"
+          ></textarea>
+        </td>
         <td>
           <table>
             <tr>
@@ -97,6 +107,7 @@
     <div class="account-button-panel">
       <button v-on:click="logOut()" >Cerrar sesión</button>
     </div>
+  </div>
   </div>
 </template>
 

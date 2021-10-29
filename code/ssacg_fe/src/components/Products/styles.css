@@ -92,7 +92,7 @@ button:active {
 }
 
 input,
-textarea {
+#descriptionTextArea{
   width: 225px;
   margin: 1vh 4.125vw 4.125vh 4.125vw;
   padding: 10px 15px 10px 15px;
@@ -101,10 +101,25 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+#descriptionTextArea:focus {
   box-shadow: 0px 0px 8px rgb(199, 196, 196);
   outline: none;
 }
+/* URL image start */
+#img_src_TextArea{
+  width: 225px;
+  margin: 1vh 4.125vw 4.125vh 4.125vw;
+  padding: 10px 15px 10px 15px;
+  border-radius: 5px;
+  border: 0.25px solid rgb(163, 163, 163);
+}
+
+#img_src_TextArea:focus {
+  box-shadow: 0px 0px 8px rgb(199, 196, 196);
+  outline: none;
+}
+
+/* URL image end */
 
 .editProductInput input {
   box-shadow: 0px 0px 8px rgb(165, 194, 245);
@@ -126,5 +141,8 @@ a {
 
 #descriptionTextArea {
   
+}
+.page-container-products {
+  margin-top: 70px;
 }
 /*<style src="@/components/Products/styles.css"></style>*/

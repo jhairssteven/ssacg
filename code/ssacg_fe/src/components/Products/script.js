@@ -43,9 +43,10 @@ export default {
 
         updateRecord: async function (data, selRow) {
             // await this.checkIfLogged();
-            let id_product = selRow.cells[0].innerHTML;
+            let id_product = selRow.cells[1].innerHTML;
 
             let prodData2update = {
+                img_src: data.img_src,
                 category: data.category,
                 name: data.name,
                 unitary_price: data.price,
@@ -60,11 +61,12 @@ export default {
                         { "Authorization": `Bearer ${this.tokenStr}` }
                 }
             ).then((result) => {
-                selRow.cells[1].innerHTML = result.data.category;
-                selRow.cells[2].innerHTML = result.data.name;
-                selRow.cells[3].innerHTML = result.data.unitary_price;
-                selRow.cells[4].innerHTML = result.data.stock;
-                selRow.cells[5].innerHTML = result.data.description;
+                selRow.cells[2].innerHTML = result.data.category;
+                selRow.cells[3].innerHTML = result.data.name;
+                selRow.cells[4].innerHTML = result.data.unitary_price;
+                selRow.cells[5].innerHTML = result.data.stock;
+                selRow.cells[6].innerHTML = result.data.description;
+                selRow.cells[0].innerHTML = result.data.img_src;
             })
             .catch((error) => {
                 this.parseErrorForTokens(error, "error in updateProduct()");
@@ -78,6 +80,7 @@ export default {
             document.getElementById("priceField").value = "";
             document.getElementById("stockField").value = "";
             document.getElementById("descriptionTextArea").value = "";
+            document.getElementById("img_src_TextArea").value = "";
             this.selectedRow = null;
         },
 
@@ -105,16 +108,19 @@ export default {
 
         onEdit: function (td) {
             this.selectedRow = td.target.parentElement.parentElement;
-            document.getElementById("categoryField").value = this.selectedRow.cells[1].innerHTML;
-            document.getElementById("nameField").value = this.selectedRow.cells[2].innerHTML;
-            document.getElementById("priceField").value = this.selectedRow.cells[3].innerHTML;
-            document.getElementById("stockField").value = this.selectedRow.cells[4].innerHTML;
-            document.getElementById("descriptionTextArea").value = this.selectedRow.cells[5].innerHTML;
+            document.getElementById("categoryField").value = this.selectedRow.cells[2].innerHTML;
+            document.getElementById("nameField").value = this.selectedRow.cells[3].innerHTML;
+            document.getElementById("priceField").value = this.selectedRow.cells[4].innerHTML;
+            document.getElementById("stockField").value = this.selectedRow.cells[5].innerHTML;
+            document.getElementById("descriptionTextArea").value = this.selectedRow.cells[6].innerHTML;
+            document.getElementById("img_src_TextArea").value = this.selectedRow.cells[0].innerHTML;
+
         },
 
         insertNewRecord: function (data) {
             // this.checkIfLogged();
             let newProd = {
+                img_src: data.img_src,
                 category: data.category,
                 name: data.name,
                 unitary_price: data.price,
@@ -127,6 +133,7 @@ export default {
                     // traer el id en la respuesta o todos sus datos
                     this.product_list.push({
                         id:             result.data.id_product,
+                        img_src:        result.data.img_src,
                         category:       result.data.category,
                         nombre:         result.data.name,
                         precio:         result.data.unitary_price,
@@ -155,6 +162,8 @@ export default {
             formData["price"] = document.getElementById("priceField").value;
             formData["stock"] = document.getElementById("stockField").value;
             formData["description"] = document.getElementById("descriptionTextArea").value;
+            formData["img_src"] = document.getElementById("img_src_TextArea").value;
+
             return formData;
         },
 
@@ -198,6 +207,7 @@ export default {
                             this.product_list.push(
                                 {
                                     id:             result.data[i].id_product,
+                                    img_src:        result.data[i].img_src,
                                     category:       result.data[i].category,
                                     nombre:         result.data[i].name,
                                     precio:         result.data[i].unitary_price,
@@ -215,7 +225,7 @@ export default {
 
         parseErrorForTokens: function(error, errorCodeLocationStr) {
             let alertMsg = "";
-            if (error.response.status == "401" || error.response.status == "400")
+            if (error.response.status == "401" )
                 alertMsg = "Tus credenciales han expirado,\n ingresa nuevamente";              
             else //other code status e.g: 500
                 alertMsg = "Error interno, ingresa nuevamente";
