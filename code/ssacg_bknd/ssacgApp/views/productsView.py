@@ -25,17 +25,17 @@ class ProductsCreateView(generics.CreateAPIView):
 class ProductsListView(generics.ListAPIView):
     queryset           = Products.objects.all()
     serializer_class   = ProductsSerializer
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
+
     
 
 class ProductsDetailView(generics.RetrieveAPIView):
     queryset           = Products.objects.all()
     serializer_class   = ProductsSerializer
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
-    def get(self,request,*args, **kwargs):
-
-        return super().get(request,*args, **kwargs)
+    def get(self,request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
 
 class ProductsUpdateView(generics.RetrieveUpdateAPIView):
     queryset           = Products.objects.all()

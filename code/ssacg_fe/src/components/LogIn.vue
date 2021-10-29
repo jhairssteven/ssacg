@@ -1,7 +1,6 @@
 <template>
-  <div class="container">
     <div class="login-page">
-      <table>
+      <!-- <table>
         <tr>
           <td>
             <img
@@ -10,11 +9,12 @@
               alt="logo"
             />
           </td>
-          <td style="padding: 0vw 0vw 0vw 18.5vw;">
-            <table>
+          <td style="padding: 0vw 0vw 0vw 18.5vw;"> -->
+            <table class="input-container">
               <tr>
                 <td>
                   <form v-on:submit.prevent="processLogInUser">
+                    
                     <input
                       class="field-input"
                       placeholder="Correo..."
@@ -36,11 +36,10 @@
                 </td>
               </tr>
             </table>
-          </td>
+          <!-- </td>
         </tr>
-      </table>
+      </table> -->
     </div>
-  </div>
 </template>
 
 <script>
@@ -103,11 +102,26 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+.alert-msg {
+  
+  width: 15vw;
+  margin-left: 3vw;
+  text-align: center;
+
+  white-space: normal;
+  word-wrap: break-word;
+  
+}
+.input-container {
+  margin: auto;
+  padding: 100px auto 100px auto;
+}
+
 .login-page {
   margin-top: 25vh;
-  display: flex;
-  justify-content: center;
+  margin-bottom: 29.6vh;
 }
 
 * {
@@ -118,7 +132,7 @@ export default {
 }
 
 .field-input {
-  width: 225px;
+  width: 20vw;
   margin: 1px 1px 15px 1px;
   padding: 10px 15px 10px 15px;
   border-radius: 5px;
@@ -138,9 +152,9 @@ button {
 }
 
 .login-btn {
-  width: 255px;
+  width: 20vw;
   padding: 10px 1px 10px 1px;
-  margin: 25px auto 10px auto;
+  /* margin: 25px auto 10px auto; */
   background-color: #4384f4; /* 4384F4*/
   color: white;
 }
@@ -153,10 +167,15 @@ button {
   background-color: #356ac7;
 }
 .signup-btn {
-  width: 120px;
+  width: 10vw;
+  margin: 10px 5vw 10px 5vw;
   padding: 7px 1px 7px 1px;
   background-color: #ffa093; /* F89E90 */
   color: black;
+
+  /* responsiveness */
+  white-space: normal;
+  word-wrap: break-word;
 }
 .signup-btn:hover {
   background-color: #f1968a;

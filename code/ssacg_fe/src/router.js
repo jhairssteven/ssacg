@@ -1,10 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 // import App from './App.vue'
-// import App from './AppOld.vue'
-import App from './MainPage.vue'
+import App from './AppOld.vue'
+import MainPage from './MainPage.vue'
+import ProductListByCat from './components/ProductListByCat.vue';
 import LogIn from './components/LogIn.vue';
 import SignUp from './components/SignUp.vue';
 import Products from './components/Products/Products.vue';
+import ProductMainPage from './components/ProductMainPage.vue';
 
 const routes = [
   {
@@ -23,9 +25,27 @@ const routes = [
     component: SignUp
   },
   {
-    path: '/u/products/',
+    path: '/u/products',
     name: 'products',
     component: Products,
+    props: true
+  },
+  {
+    path: '/products/category/:category',
+    name: 'productListByCat',
+    component: ProductListByCat,
+    props: true
+  },
+  {
+    path: '/mainpage/',
+    name: 'mainPage',
+    component: MainPage,
+    props: true
+  },
+  {
+    path: '/:category/product/:pid',
+    name: 'productMainPage',
+    component: ProductMainPage,
     props: true
   },
 ];

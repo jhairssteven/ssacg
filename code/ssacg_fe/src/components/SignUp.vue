@@ -1,10 +1,10 @@
 <template>
   <div class="page-container">
-        <table>
+        <!-- <table>
             <tr>
                 <td><img class="logo" src="../assets/logo-anillo-ssacg-multicolor.png" alt=""></td>
-                <td style="padding: 0vw 0vw 0vw 18.5vw;">
-                    <table>
+                <td style="padding: 0vw 0vw 0vw 18.5vw;"> -->
+                    <table style="margin-bottom: 4vh">
                         <tr><td>
                             <form v-on:submit.prevent="processSignUpUser">
                                 <input class="field-input" v-model="user.name" type="text" placeholder="Nombre de usuario"><br>
@@ -15,13 +15,13 @@
                                 <!-- </div> -->
                                 <p class="alert-msg">{{alert_msg}}</p>
                                 <button class="signup-btn-signup-page">Crear cuenta</button><br>
-                                <a href="" v-on:click="back2login">Ya tengo una cuenta</a>
+                                <router-link class="i-have-account" :to="{name: 'logIn'}">Ya tengo una cuenta</router-link>
                             </form>
                         </td></tr>                        
                     </table>
-                </td>
+                <!-- </td>
             </tr>
-        </table>
+        </table> -->
     </div>
 </template>
 
@@ -64,7 +64,9 @@
                                         token_acess: result.data.access,
                                         token_refresh: result.data.refresh
                                     };
-                                    this.$emit("completedSignUp", dataSignUp);
+                                    // this.$emit("completedSignUp", dataSignUp);
+                                    alert("succesfully signup");
+                                    this.$router.push({name: "logIn"});
                                 }).catch((error) => {
                                         alert("Unkown error:\n"
                                             + JSON.stringify(error.response.data))
@@ -85,9 +87,19 @@
     };
 </script>
 
-<style>
+<style scoped>
+.i-have-account {
+    width: 15vw;
+    margin-left: 5vw;
+    text-align: center;
+
+    white-space: normal;
+    word-wrap: break-word;
+}
+
 .page-container {
     margin-top: 25vh;
+    margin-bottom: 12.5vh;
     display: flex;
     justify-content: center;
 }
@@ -95,24 +107,40 @@
 .logo {
   border-radius: 25px;
 }
-
 .field-input {
-    margin: 1px 1px 15px 1px;
+  width: 20vw;
+  margin: 1px 1px 15px 1px;
+  padding: 10px 15px 10px 15px;
+  border-radius: 5px;
+  border: 0.25px solid rgb(163, 163, 163);
 }
 
-
+.field-input:focus {
+  box-shadow: 0px 0px 8px rgb(199, 196, 196);
+  outline: none;
+}
 
 a {
     color: blue;
     font-size: 15px;
 }
 
+button {
+    width: 20vw;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
 .signup-btn-signup-page {
-  width: 255px;
+
   padding: 10px 1px 10px 1px;
   margin: 25px auto 5px auto;
   background-color: #ffa093; /* F89E90 */
   color: black;
+
+  
 }
 .signup-btn-signup-page:hover {
   background-color: #f1968a;
